@@ -66,6 +66,13 @@ if(REDIS_STORAGE_BACKEND)
   )
 endif()
 
+if(S3_STORAGE_BACKEND)
+  find_package(AWSSDK REQUIRED COMPONENTS s3 sts iam)
+  target_compile_definitions(ccache_framework PUBLIC -DHAVE_S3_STORAGE_BACKEND)
+  target_link_libraries(ccache_framework PUBLIC standard_settings
+    standard_warnings ${AWSSDK_LINK_LIBRARIES} third_party)
+endif()
+
 add_executable(test-lockfile test_lockfile.cpp)
 target_link_libraries(test-lockfile PRIVATE ccache_framework)
 

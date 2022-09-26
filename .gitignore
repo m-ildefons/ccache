@@ -24,3 +24,6 @@ misc/.clang-format-exe
 
 # macOS custom attributes
 .DS_Store/
+
+# clangd cache
+/.cache/

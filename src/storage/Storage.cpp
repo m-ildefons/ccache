@@ -32,6 +32,9 @@
 #ifdef HAVE_REDIS_STORAGE_BACKEND
 #  include <storage/remote/RedisStorage.hpp>
 #endif
+#ifdef HAVE_S3_STORAGE_BACKEND
+#  include <storage/remote/S3Storage.hpp>
+#endif
 #include <core/CacheEntry.hpp>
 #include <util/Bytes.hpp>
 #include <util/Timer.hpp>
@@ -59,6 +62,9 @@ const std::unordered_map<std::string /*scheme*/,
 #ifdef HAVE_REDIS_STORAGE_BACKEND
     {"redis", std::make_shared<remote::RedisStorage>()},
     {"redis+unix", std::make_shared<remote::RedisStorage>()},
+#endif
+#ifdef HAVE_S3_STORAGE_BACKEND
+    {"s3", std::make_shared<remote::S3Storage>()},
 #endif
 };
 
